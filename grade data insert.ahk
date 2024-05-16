@@ -1,0 +1,127 @@
+#Persistent
+
+; Define the data in a multi-line string
+data =
+(
+A F4	0	10
+A F3	11	99
+SCRAP	100	999
+A F4	1000	1010
+A F3	1011	1099
+SCRAP	1100	1999
+A F4	2000	2010
+A F3	2011	2099
+SCRAP	2100	2999
+A F4	3000	3010
+A F3	3011	3099
+SCRAP	3100	3999
+A F4	4000	4010
+A F3	4011	4099
+SCRAP	4100	4999
+A F4	5000	5010
+A F3	5011	5099
+SCRAP	5100	5999
+A F4	6000	6010
+A F3	6011	6099
+SCRAP	6100	6999
+A F4	7000	7010
+A F3	7011	7099
+SCRAP	7100	7999
+A F4	8000	8010
+A F3	8011	8099
+SCRAP	8100	8999
+A F4	9000	9010
+A F3	9011	9099
+SCRAP	9100	9999
+B F4	10000	10010
+B F3	10011	10099
+SCRAP	10100	10999
+B F4	11000	11010
+B F3	11011	11099
+SCRAP	11100	11999
+B F4	12000	12010
+B F3	12011	12099
+SCRAP	12100	12999
+B F4	13000	13010
+B F3	13011	13099
+SCRAP	13100	13999
+B F4	14000	14010
+B F3	14011	14099
+SCRAP	14100	14999
+B F4	15000	15010
+B F3	15011	15099
+SCRAP	15100	15999
+B F4	16000	16010
+B F3	16011	16099
+SCRAP	16100	16999
+B F4	17000	17010
+B F3	17011	17099
+SCRAP	17100	17999
+B F4	18000	18010
+B F3	18011	18099
+SCRAP	18100	18999
+B F4	19000	19010
+B F3	19011	19099
+SCRAP	19100	19999
+C F4	20000	20010
+C F3	20011	20099
+SCRAP	20100	20999
+C F4	21000	21010
+C F3	21011	21099
+SCRAP	21100	21999
+C F4	22000	22010
+C F3	22011	22099
+SCRAP	22100	22999
+C F4	23000	23010
+C F3	23011	23099
+SCRAP	23100	23999
+C F4	24000	24010
+C F3	24011	24099
+SCRAP	24100	24999
+C F4	25000	25010
+C F3	25011	25099
+SCRAP	25100	25999
+C F4	26000	26010
+C F3	26011	26099
+SCRAP	26100	26999
+C F4	27000	27010
+C F3	27011	27099
+SCRAP	27100	27999
+C F4	28000	28010
+C F3	28011	28099
+SCRAP	28100	28999
+C F4	29000	29010
+C F3	29011	29099
+SCRAP	29100	999999
+Auto Fail	1000000	1000000
+)
+
+; Split the data into an array of lines
+lines := StrSplit(data, "`n")
+
+; Hotkey to start the insertion process (you can change the hotkey as needed)
+^i:: ; Ctrl+I to start
+
+    ; Loop through each line in the array
+    Loop, % lines.MaxIndex()
+    {
+        ; Split the current line into parts
+        parts := StrSplit(lines[A_Index], "`t")
+
+        ; Send the first part, press tab twice
+        Send, % parts[1]
+        Send, {Tab 2}
+
+        ; Send the second part, press tab once
+        Send, % parts[2]
+        Send, {Tab}
+
+        ; Send the third part, press tab twice
+        Send, % parts[3]
+        Send, {Tab 2}
+        
+        ; Optional: add a small delay between each line to prevent overwhelming the software
+        Sleep, 100
+    }
+
+return
